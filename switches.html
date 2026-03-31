@@ -32,9 +32,8 @@
     a{ text-decoration:none; color:inherit; }
     button{ font:inherit; cursor:pointer; outline: none; }
 
-    /* --- [1] Header: Result 페이지와 완벽 일치 --- */
     .top {
-      padding: 28px 30px 0; /* Result 페이지와 동일한 상단/좌우 여백 */
+      padding: 28px 30px 0; 
       display: flex;
       align-items: center;
     }
@@ -49,16 +48,15 @@
     }
 
     .home-link img {
-      width: 34px; /* Result 페이지 이미지 크기와 동일 */
+      width: 34px; 
       height: 34px;
       object-fit: contain;
     }
 
     .home-link:hover { opacity: 0.7; }
 
-    /* --- [2] Content Layout --- */
     .wrap{ 
-      padding:26px 60px 56px; /* Result 페이지와 동일한 좌우 여백(60px) */
+      padding:26px 60px 56px;
       background:#fff; 
     }
 
@@ -70,15 +68,14 @@
       font-weight:700;
     }
 
-    /* --- [3] 설명 문구: 한 줄로 쭉 뜨도록 설정 --- */
     .desc{ 
       margin:0 0 48px; 
       color:var(--gray); 
       font-size:18px; 
       line-height:1.5; 
       letter-spacing: -0.01em;
-      white-space: nowrap; /* 줄바꿈 방지 */
-      max-width: none;     /* 너비 제한 해제 */
+      white-space: nowrap;
+      max-width: none; 
     }
 
     .grid{ 
@@ -97,7 +94,6 @@
       justify-content:space-between;
     }
 
-    /* --- Components Styling (기존과 동일) --- */
     .label{ margin:0; font-size:15px; font-weight:700; letter-spacing:-.03em; }
     .toggle{ position:relative; width:88px; height:44px; border:none; border-radius:999px; background:#cfcfcf; padding:0; }
     .toggle .knob{ position:absolute; top:4px; left:4px; width:36px; height:36px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 2px rgba(0,0,0,0.15); }
@@ -131,10 +127,9 @@
     .bottom{ display:flex; justify-content:center; padding-top:60px; }
     .go{ min-width:380px; height:72px; border:none; border-radius:999px; background:var(--lime); color:var(--black); font-size:24px; font-weight:700; letter-spacing:-.03em; display:inline-flex; align-items:center; justify-content:center; }
 
-    /* 반응형 처리 */
     @media (max-width:1100px) {
       .wrap { padding: 20px 30px; }
-      .desc { white-space: normal; } /* 화면이 너무 좁아지면 줄바꿈 허용 */
+      .desc { white-space: normal; }
     }
 
     @media (max-width:768px){ 
@@ -147,7 +142,7 @@
 <body>
   <header class="top">
     <a href="index.html" class="home-link">
-      <img src="home.png" alt="Home">
+      <img src="Home.png" alt="Home">
     </a>
   </header>
 
