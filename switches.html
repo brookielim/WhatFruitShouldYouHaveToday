@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How do you feel today?</title>
+  <style>
+    :root{
+      --orange:#FF4B1E;
+      --mint:#58D0AC;
+      --yellow:#F6D410;
+      --lime:#D6FF25;
+      --soft:#ECEBE7;
+      --pink:#FEC5EE;
+      --blue:#5450EB;
+      --black:#111111;
+      --gray:#494949;
+      --card:#eff2f386;
+      --border:#5b5b5b;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#fff;
+      color:var(--black);
+    }
+
+    a{ text-decoration:none; color:inherit; }
+    button{ font:inherit; cursor:pointer; outline: none; }
+
+    /* --- [1] Header: Result 페이지와 완벽 일치 --- */
+    .top {
+      padding: 28px 30px 0; /* Result 페이지와 동일한 상단/좌우 여백 */
+      display: flex;
+      align-items: center;
+    }
+
+    .home-link {
+      display: inline-flex;
+      width: 42px; 
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+
+    .home-link img {
+      width: 34px; /* Result 페이지 이미지 크기와 동일 */
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .home-link:hover { opacity: 0.7; }
+
+    /* --- [2] Content Layout --- */
+    .wrap{ 
+      padding:26px 60px 56px; /* Result 페이지와 동일한 좌우 여백(60px) */
+      background:#fff; 
+    }
+
+    h1{
+      margin:26px 0 24px;
+      font-size:clamp(64px, 6vw, 96px);
+      line-height:.95;
+      letter-spacing:-.07em;
+      font-weight:700;
+    }
+
+    /* --- [3] 설명 문구: 한 줄로 쭉 뜨도록 설정 --- */
+    .desc{ 
+      margin:0 0 48px; 
+      color:var(--gray); 
+      font-size:18px; 
+      line-height:1.5; 
+      letter-spacing: -0.01em;
+      white-space: nowrap; /* 줄바꿈 방지 */
+      max-width: none;     /* 너비 제한 해제 */
+    }
+
+    .grid{ 
+      display:grid; 
+      grid-template-columns:repeat(4, minmax(0,1fr)); 
+      gap:24px; 
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      min-height:160px;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    /* --- Components Styling (기존과 동일) --- */
+    .label{ margin:0; font-size:15px; font-weight:700; letter-spacing:-.03em; }
+    .toggle{ position:relative; width:88px; height:44px; border:none; border-radius:999px; background:#cfcfcf; padding:0; }
+    .toggle .knob{ position:absolute; top:4px; left:4px; width:36px; height:36px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 2px rgba(0,0,0,0.15); }
+    .toggle.is-active .knob{ transform:translateX(44px); }
+    .toggle.blue.is-active{ background:var(--blue); }
+    .toggle.mint.is-active{ background:var(--mint); }
+    .toggle.orange.is-active{ background:var(--orange); }
+    .vertical{ position:relative; width:44px; height:88px; border:none; border-radius:999px; background:#cfcfcf; padding:0; }
+    .vertical .knob{ position:absolute; left:4px; top:4px; width:36px; height:36px; border-radius:50%; background:#fff; transition:transform .18s ease; }
+    .vertical.is-active{ background:var(--pink); }
+    .vertical.is-active .knob{ transform:translateY(44px); }
+    .seg, .word{ display:inline-flex; width:fit-content; }
+    .seg button, .word button{ min-width: 92px; height: 42px; border: 2px solid var(--border); background: #fff; font-size: 15px; padding: 0 18px; color: #444; position: relative; cursor: pointer; }
+    .seg button:first-child, .word button:first-child{ border-radius:14px 0 0 14px; margin-right: -2px; }
+    .seg button:last-child, .word button:last-child{ border-radius:0 14px 14px 0; }
+    .is-selected-on, .is-selected-off { z-index: 5; background: var(--yellow) !important; color: var(--black) !important; border-color: var(--yellow) !important; }
+    .is-orange-selected { z-index: 5; background: var(--orange) !important; color: #fff !important; border-color: var(--orange) !important; }
+    .icon{ width:46px; height:46px; border-radius:12px; border:none; background:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:22px; color:var(--black); }
+    .icon.orange.is-active{ background:var(--orange); color:#fff; }
+    .icon.blue.is-active{ background:var(--blue); color:#fff; }
+    .dots{ display:inline-flex; gap:10px; }
+    .dot{ width:14px; height:14px; border-radius:50%; border:1.5px solid #777; background:transparent; padding:0; }
+    .dot.is-active{ background:var(--yellow); border-color:var(--yellow); }
+    .pill{ min-width:150px; height:40px; border:none; border-radius:999px; background:#cfcfcf; color:#fff; font-size:15px; padding:0 18px; }
+    .pill.is-active{ background:var(--mint); }
+    .slider{ position:relative; width:108px; height:38px; border:none; background:transparent; padding:0; }
+    .slider .line{ position:absolute; left:0; right:0; top:16px; height:6px; border-radius:999px; background:#d0d0d0; }
+    .slider .thumb{ position:absolute; top:8px; left:8px; width:22px; height:22px; border-radius:50%; background:#fff; border:1.5px solid #777; transition:transform .18s ease; }
+    .slider.is-active .line{ background:var(--blue); }
+    .slider.is-active .thumb{ transform:translateX(70px); }
+    .bottom{ display:flex; justify-content:center; padding-top:60px; }
+    .go{ min-width:380px; height:72px; border:none; border-radius:999px; background:var(--lime); color:var(--black); font-size:24px; font-weight:700; letter-spacing:-.03em; display:inline-flex; align-items:center; justify-content:center; }
+
+    /* 반응형 처리 */
+    @media (max-width:1100px) {
+      .wrap { padding: 20px 30px; }
+      .desc { white-space: normal; } /* 화면이 너무 좁아지면 줄바꿈 허용 */
+    }
+
+    @media (max-width:768px){ 
+      .top{ padding: 20px; }
+      .wrap{ padding: 20px; }
+      .grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; } 
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="index.html" class="home-link">
+      <img src="home.png" alt="Home">
+    </a>
+  </header>
+
+  <main class="wrap">
+    <h1>How do you feel today?</h1>
+    <p class="desc">Choose the switches that match your condition today and get a fruit recommendation based on your current state.</p>
+
+    <section class="grid">
+      <article class="card"><p class="label">Tired</p><button class="toggle blue" data-key="tired"><span class="knob"></span></button></article>
+      <article class="card"><p class="label">Low energy</p><button class="toggle blue" data-key="lowEnergy"><span class="knob"></span></button></article>
+      <article class="card"><p class="label">Sleepy</p><button class="vertical" data-key="sleepy"><span class="knob"></span></button></article>
+      <article class="card"><p class="label">Physically drained</p><button class="toggle blue" data-key="physicallyDrained"><span class="knob"></span></button></article>
+      <article class="card">
+        <p class="label">Need recovery</p>
+        <div class="seg" data-key="needRecovery" data-color="orange">
+          <button data-value="off">No</button>
+          <button data-value="on">Yes</button>
+        </div>
+      </article>
+      <article class="card"><p class="label">Need focus</p><div class="word" data-key="needFocus"><button data-value="off">blur</button><button data-value="on">focus</button></div></article>
+      <article class="card"><p class="label">Mentally foggy</p><div class="dots" data-key="mentallyFoggy"><button class="dot"></button><button class="dot"></button><button class="dot"></button></div></article>
+      <article class="card"><p class="label">Stressed</p><button class="icon orange" data-key="stressed">:|</button></article>
+      <article class="card">
+        <p class="label">Anxious</p>
+        <div class="seg" data-key="anxious" data-color="orange">
+          <button data-value="off">calm</button>
+          <button data-value="on">anxious</button>
+        </div>
+      </article>
+      <article class="card"><p class="label">Moody</p><button class="pill" data-key="moody">mood on</button></article>
+      <article class="card"><p class="label">Dehydrated</p><button class="slider" data-key="dehydrated"><span class="line"></span><span class="thumb"></span></button></article>
+      <article class="card"><p class="label">Bloated</p><button class="pill" data-key="bloated">selected</button></article>
+      <article class="card"><p class="label">Constipated</p><button class="toggle mint" data-key="constipated"><span class="knob"></span></button></article>
+      <article class="card"><p class="label">Sensitive stomach</p><div class="word" data-key="sensitiveStomach"><button data-value="off">stable</button><button data-value="on">sensitive</button></div></article>
+      <article class="card"><p class="label">Need immunity</p><button class="icon blue" data-key="needImmunity">+</button></article>
+      <article class="card"><p class="label">Skipped breakfast</p><button class="pill" data-key="skippedBreakfast">checked</button></article>
+      <article class="card"><p class="label">Worked out today</p><button class="toggle blue" data-key="workedOut"><span class="knob"></span></button></article>
+      <article class="card">
+        <p class="label">Staying up late</p>
+        <div class="word" data-key="stayingUpLate" data-color="orange">
+          <button data-value="off">sleep</button>
+          <button data-value="on">awake</button>
+        </div>
+      </article>
+      <article class="card"><p class="label">Need something light</p><div class="seg" data-key="needSomethingLight"><button data-value="off">rich</button><button data-value="on">light</button></div></article>
+      <article class="card"><p class="label">Want something sweet</p><button class="icon orange" data-key="wantSomethingSweet">♥</button></article>
+      <article class="card"><p class="label">Hot day</p><div class="word" data-key="hotDay"><button data-value="off">cold</button><button data-value="on">hot</button></div></article>
+      <article class="card">
+        <p class="label">Cold day</p>
+        <div class="word" data-key="coldDay" data-color="orange">
+          <button data-value="off">warm</button>
+          <button data-value="on">cold</button>
+        </div>
+      </article>
+      <article class="card"><p class="label">Want freshness</p><button class="toggle mint" data-key="wantFreshness"><span class="knob"></span></button></article>
+      <article class="card"><p class="label">Need comfort</p><button class="pill" data-key="needComfort">comfort</button></article>
+      <article class="card"><p class="label">Skin feels dull</p><div class="dots" data-key="skinFeelsDull"><button class="dot"></button><button class="dot"></button><button class="dot"></button></div></article>
+    </section>
+
+    <div class="bottom"><button id="go" class="go">get recommendation</button></div>
+  </main>
+
+  <script>
+    const state = {
+      tired:false, lowEnergy:false, sleepy:false, physicallyDrained:false,
+      needRecovery:false, needFocus:false, mentallyFoggy:0, stressed:false,
+      anxious:false, moody:false, dehydrated:false, bloated:false,
+      constipated:false, sensitiveStomach:false, needImmunity:false,
+      skippedBreakfast:false, workedOut:false, stayingUpLate:false,
+      needSomethingLight:false, wantSomethingSweet:false, hotDay:false,
+      coldDay:false, wantFreshness:false, needComfort:false, skinFeelsDull:0
+    };
+    function save(){ localStorage.setItem("fruitSwitchState", JSON.stringify(state)); }
+    document.querySelectorAll(".toggle, .vertical, .icon, .pill, .slider").forEach((btn)=>{
+      btn.addEventListener("click", ()=>{
+        const key = btn.dataset.key;
+        state[key] = !state[key];
+        btn.classList.toggle("is-active", state[key]);
+        save();
+      });
+    });
+    document.querySelectorAll(".seg, .word").forEach((group) => {
+      const key = group.dataset.key;
+      const colorType = group.dataset.color;
+      const buttons = group.querySelectorAll("button");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const isOn = btn.dataset.value === "on";
+          const selectedClass = (colorType === 'orange') ? "is-orange-selected" : (isOn ? "is-selected-on" : "is-selected-off");
+          const alreadyHasClass = btn.classList.contains("is-selected-on") || btn.classList.contains("is-selected-off") || btn.classList.contains("is-orange-selected");
+          buttons.forEach((b) => b.classList.remove("is-selected-on", "is-selected-off", "is-orange-selected"));
+          if (alreadyHasClass) { state[key] = false; } else { state[key] = isOn; btn.classList.add(selectedClass); }
+          save();
+        });
+      });
+    });
+    document.querySelectorAll(".dots").forEach((group)=>{
+      const key = group.dataset.key;
+      const dots = group.querySelectorAll(".dot");
+      dots.forEach((dot,index)=>{
+        dot.addEventListener("click", ()=>{
+          const level = index + 1;
+          state[key] = level;
+          dots.forEach((d,i)=> d.classList.toggle("is-active", i < level));
+          save();
+        });
+      });
+    });
+    document.getElementById("go").addEventListener("click", ()=>{ save(); location.href = "result.html"; });
+    save();
+  </script>
+</body>
+</html>

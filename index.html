@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Fruit Should You Have Today</title>
+  <style>
+    :root{
+      --orange:#FF4B1E;
+      --mint:#58D0AC;
+      --yellow:#F6D410;
+      --purple:#6058BB;
+      --lime:#D6FF25;
+      --soft:#ECEBE7;
+      --pink:#FEC5EE;
+      --blue:#5450EB;
+      --black:#111111;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;min-height:100%;font-family:Arial, Helvetica, sans-serif;background:#fff;color:var(--black);}
+    a{text-decoration:none;color:inherit;}
+
+   .home{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: 1.45fr 0.55fr;
+  padding:32px 40px 40px 28px;
+  column-gap: 24px;
+}
+
+.left{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+h1{
+  margin:0;
+  max-width: 1100px;
+  font-size: clamp(108px, 9.6vw, 160px);
+  line-height: .88;
+  letter-spacing: -.095em;
+  font-weight: 700;
+}
+
+.start{
+  margin-top:0;
+  margin-left:14px;
+  width:232px;
+  height:112px;
+  border-radius:28px;
+  background:var(--lime);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:52px;
+  font-weight:700;
+}
+
+.right{
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  padding-right:25px;
+  padding-bottom:5px;
+}
+
+.q{
+  font-size: clamp(280px, 28vw, 430px);
+  line-height: .78;
+  font-weight: 700;
+  transform: rotate(14deg);
+}
+
+    @media (max-width:768px){
+  .home{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+
+  .right{
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding-right:0;
+    padding-bottom:0;
+    margin-top:10px;
+  }
+
+  h1{
+    max-width:100%;
+    font-size:clamp(64px, 16vw, 96px);
+  }
+}
+  </style>
+</head>
+<body>
+  <main class="home">
+    <section class="left">
+      <h1>
+        What Fruit<br>
+        Should You Have<br>
+        Today
+      </h1>
+      <a href="switches.html" class="start">start</a>
+    </section>
+
+    <section class="right">
+      <div class="q">?</div>
+    </section>
+  </main>
+</body>
+</html>
