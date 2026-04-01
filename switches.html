@@ -30,17 +30,17 @@
     }
 
     a{ text-decoration:none; color:inherit; }
-    button{ font:inherit; cursor:pointer; outline: none; }
+    button{ font:inherit; cursor:pointer; outline:none; }
 
     .top {
-      padding: 28px 30px 0; 
+      padding: 28px 30px 0;
       display: flex;
       align-items: center;
     }
 
     .home-link {
       display: inline-flex;
-      width: 42px; 
+      width: 42px;
       height: 42px;
       align-items: center;
       justify-content: center;
@@ -48,16 +48,16 @@
     }
 
     .home-link img {
-      width: 34px; 
+      width: 34px;
       height: 34px;
       object-fit: contain;
     }
 
     .home-link:hover { opacity: 0.7; }
 
-    .wrap{ 
+    .wrap{
       padding:26px 60px 56px;
-      background:#fff; 
+      background:#fff;
     }
 
     h1{
@@ -68,20 +68,20 @@
       font-weight:700;
     }
 
-    .desc{ 
-      margin:0 0 48px; 
-      color:var(--gray); 
-      font-size:18px; 
-      line-height:1.5; 
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-      max-width: none; 
+    .desc{
+      margin:0 0 48px;
+      color:var(--gray);
+      font-size:18px;
+      line-height:1.5;
+      letter-spacing:-0.01em;
+      white-space:nowrap;
+      max-width:none;
     }
 
-    .grid{ 
-      display:grid; 
-      grid-template-columns:repeat(4, minmax(0,1fr)); 
-      gap:24px; 
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:24px;
     }
 
     .card{
@@ -94,48 +94,416 @@
       justify-content:space-between;
     }
 
-    .label{ margin:0; font-size:15px; font-weight:700; letter-spacing:-.03em; }
-    .toggle{ position:relative; width:88px; height:44px; border:none; border-radius:999px; background:#cfcfcf; padding:0; }
-    .toggle .knob{ position:absolute; top:4px; left:4px; width:36px; height:36px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 2px rgba(0,0,0,0.15); }
+    .label{
+      margin:0;
+      font-size:15px;
+      font-weight:700;
+      letter-spacing:-.03em;
+    }
+
+    .toggle{
+      position:relative;
+      width:88px;
+      height:44px;
+      border:none;
+      border-radius:999px;
+      background:#cfcfcf;
+      padding:0;
+      flex:0 0 auto;
+    }
+
+    .toggle .knob{
+      position:absolute;
+      top:4px;
+      left:4px;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:#fff;
+      transition:transform .18s ease;
+      box-shadow:0 1px 2px rgba(0,0,0,0.15);
+    }
+
     .toggle.is-active .knob{ transform:translateX(44px); }
     .toggle.blue.is-active{ background:var(--blue); }
     .toggle.mint.is-active{ background:var(--mint); }
     .toggle.orange.is-active{ background:var(--orange); }
-    .vertical{ position:relative; width:44px; height:88px; border:none; border-radius:999px; background:#cfcfcf; padding:0; }
-    .vertical .knob{ position:absolute; left:4px; top:4px; width:36px; height:36px; border-radius:50%; background:#fff; transition:transform .18s ease; }
+
+    .vertical{
+      position:relative;
+      width:44px;
+      height:88px;
+      border:none;
+      border-radius:999px;
+      background:#cfcfcf;
+      padding:0;
+      flex:0 0 auto;
+    }
+
+    .vertical .knob{
+      position:absolute;
+      left:4px;
+      top:4px;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:#fff;
+      transition:transform .18s ease;
+    }
+
     .vertical.is-active{ background:var(--pink); }
     .vertical.is-active .knob{ transform:translateY(44px); }
-    .seg, .word{ display:inline-flex; width:fit-content; }
-    .seg button, .word button{ min-width: 92px; height: 42px; border: 2px solid var(--border); background: #fff; font-size: 15px; padding: 0 18px; color: #444; position: relative; cursor: pointer; }
-    .seg button:first-child, .word button:first-child{ border-radius:14px 0 0 14px; margin-right: -2px; }
-    .seg button:last-child, .word button:last-child{ border-radius:0 14px 14px 0; }
-    .is-selected-on, .is-selected-off { z-index: 5; background: var(--yellow) !important; color: var(--black) !important; border-color: var(--yellow) !important; }
-    .is-orange-selected { z-index: 5; background: var(--orange) !important; color: #fff !important; border-color: var(--orange) !important; }
-    .icon{ width:46px; height:46px; border-radius:12px; border:none; background:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:22px; color:var(--black); }
+
+    .seg, .word{
+      display:inline-flex;
+      width:fit-content;
+      max-width:100%;
+      flex-wrap:nowrap;
+      align-self:flex-start;
+    }
+
+    .seg button,
+    .word button{
+      min-width:92px;
+      height:42px;
+      border:2px solid var(--border);
+      background:#fff;
+      font-size:15px;
+      padding:0 18px;
+      color:#444;
+      position:relative;
+      cursor:pointer;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .seg button:first-child,
+    .word button:first-child{
+      border-radius:14px 0 0 14px;
+      margin-right:-2px;
+    }
+
+    .seg button:last-child,
+    .word button:last-child{
+      border-radius:0 14px 14px 0;
+    }
+
+    .is-selected-on,
+    .is-selected-off{
+      z-index:5;
+      background:var(--yellow) !important;
+      color:var(--black) !important;
+      border-color:var(--yellow) !important;
+    }
+
+    .is-orange-selected{
+      z-index:5;
+      background:var(--orange) !important;
+      color:#fff !important;
+      border-color:var(--orange) !important;
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      border-radius:12px;
+      border:none;
+      background:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      color:var(--black);
+      flex:0 0 auto;
+    }
+
     .icon.orange.is-active{ background:var(--orange); color:#fff; }
     .icon.blue.is-active{ background:var(--blue); color:#fff; }
-    .dots{ display:inline-flex; gap:10px; }
-    .dot{ width:14px; height:14px; border-radius:50%; border:1.5px solid #777; background:transparent; padding:0; }
-    .dot.is-active{ background:var(--yellow); border-color:var(--yellow); }
-    .pill{ min-width:150px; height:40px; border:none; border-radius:999px; background:#cfcfcf; color:#fff; font-size:15px; padding:0 18px; }
+
+    .dots{
+      display:inline-flex;
+      gap:10px;
+      flex-wrap:nowrap;
+      align-self:flex-start;
+    }
+
+    .dot{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      border:1.5px solid #777;
+      background:transparent;
+      padding:0;
+      flex:0 0 auto;
+    }
+
+    .dot.is-active{
+      background:var(--yellow);
+      border-color:var(--yellow);
+    }
+
+    .pill{
+      min-width:150px;
+      height:40px;
+      border:none;
+      border-radius:999px;
+      background:#cfcfcf;
+      color:#fff;
+      font-size:15px;
+      padding:0 18px;
+      flex:0 0 auto;
+    }
+
     .pill.is-active{ background:var(--mint); }
-    .slider{ position:relative; width:108px; height:38px; border:none; background:transparent; padding:0; }
-    .slider .line{ position:absolute; left:0; right:0; top:16px; height:6px; border-radius:999px; background:#d0d0d0; }
-    .slider .thumb{ position:absolute; top:8px; left:8px; width:22px; height:22px; border-radius:50%; background:#fff; border:1.5px solid #777; transition:transform .18s ease; }
+
+    .slider{
+      position:relative;
+      width:108px;
+      height:38px;
+      border:none;
+      background:transparent;
+      padding:0;
+      flex:0 0 auto;
+    }
+
+    .slider .line{
+      position:absolute;
+      left:0;
+      right:0;
+      top:16px;
+      height:6px;
+      border-radius:999px;
+      background:#d0d0d0;
+    }
+
+    .slider .thumb{
+      position:absolute;
+      top:8px;
+      left:8px;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:#fff;
+      border:1.5px solid #777;
+      transition:transform .18s ease;
+    }
+
     .slider.is-active .line{ background:var(--blue); }
     .slider.is-active .thumb{ transform:translateX(70px); }
-    .bottom{ display:flex; justify-content:center; padding-top:60px; }
-    .go{ min-width:380px; height:72px; border:none; border-radius:999px; background:var(--lime); color:var(--black); font-size:24px; font-weight:700; letter-spacing:-.03em; display:inline-flex; align-items:center; justify-content:center; }
+
+    .bottom{
+      display:flex;
+      justify-content:center;
+      padding-top:60px;
+    }
+
+    .go{
+      min-width:380px;
+      height:72px;
+      border:none;
+      border-radius:999px;
+      background:var(--lime);
+      color:var(--black);
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:-.03em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
 
     @media (max-width:1100px) {
       .wrap { padding: 20px 30px; }
       .desc { white-space: normal; }
     }
 
-    @media (max-width:768px){ 
-      .top{ padding: 20px; }
-      .wrap{ padding: 20px; }
-      .grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; } 
+    @media (max-width:768px){
+      .top{
+        padding:20px;
+      }
+
+      .wrap{
+        padding:20px;
+      }
+
+      .grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:16px;
+      }
+
+      .card{
+        min-height:136px;
+        padding:16px;
+      }
+
+      .label{
+        font-size:13px;
+      }
+
+      .seg button,
+      .word button{
+        min-width:72px;
+        height:36px;
+        font-size:12px;
+        padding:0 12px;
+      }
+
+      .toggle{
+        width:76px;
+        height:38px;
+      }
+
+      .toggle .knob{
+        width:30px;
+        height:30px;
+      }
+
+      .toggle.is-active .knob{
+        transform:translateX(38px);
+      }
+
+      .vertical{
+        width:38px;
+        height:76px;
+      }
+
+      .vertical .knob{
+        width:30px;
+        height:30px;
+      }
+
+      .vertical.is-active .knob{
+        transform:translateY(38px);
+      }
+
+      .pill{
+        min-width:124px;
+        height:36px;
+        font-size:13px;
+        padding:0 14px;
+      }
+
+      .slider{
+        width:92px;
+        height:34px;
+      }
+
+      .slider .line{
+        top:14px;
+      }
+
+      .slider .thumb{
+        top:7px;
+        left:6px;
+        width:20px;
+        height:20px;
+      }
+
+      .slider.is-active .thumb{
+        transform:translateX(58px);
+      }
+
+      .icon{
+        width:40px;
+        height:40px;
+        font-size:20px;
+      }
+
+      .dots{
+        gap:8px;
+      }
+
+      .dot{
+        width:12px;
+        height:12px;
+      }
+
+      .go{
+        min-width:280px;
+        height:60px;
+        font-size:20px;
+      }
+    }
+
+    @media (max-width:430px){
+      .wrap{
+        padding:16px;
+      }
+
+      h1{
+        margin:18px 0 18px;
+        font-size:clamp(42px, 12vw, 64px);
+      }
+
+      .desc{
+        margin:0 0 28px;
+        font-size:15px;
+      }
+
+      .grid{
+        gap:12px;
+      }
+
+      .card{
+        min-height:124px;
+        padding:14px;
+      }
+
+      .seg button,
+      .word button{
+        min-width:62px;
+        height:34px;
+        font-size:11px;
+        padding:0 10px;
+      }
+
+      .pill{
+        min-width:112px;
+        height:34px;
+        font-size:12px;
+        padding:0 12px;
+      }
+
+      .toggle{
+        width:68px;
+        height:34px;
+      }
+
+      .toggle .knob{
+        width:26px;
+        height:26px;
+      }
+
+      .toggle.is-active .knob{
+        transform:translateX(34px);
+      }
+
+      .vertical{
+        width:34px;
+        height:68px;
+      }
+
+      .vertical .knob{
+        width:26px;
+        height:26px;
+      }
+
+      .vertical.is-active .knob{
+        transform:translateY(34px);
+      }
+
+      .slider{
+        width:84px;
+      }
+
+      .slider .thumb{
+        width:18px;
+        height:18px;
+      }
+
+      .slider.is-active .thumb{
+        transform:translateX(54px);
+      }
     }
   </style>
 </head>
@@ -155,6 +523,7 @@
       <article class="card"><p class="label">Low energy</p><button class="toggle blue" data-key="lowEnergy"><span class="knob"></span></button></article>
       <article class="card"><p class="label">Sleepy</p><button class="vertical" data-key="sleepy"><span class="knob"></span></button></article>
       <article class="card"><p class="label">Physically drained</p><button class="toggle blue" data-key="physicallyDrained"><span class="knob"></span></button></article>
+
       <article class="card">
         <p class="label">Need recovery</p>
         <div class="seg" data-key="needRecovery" data-color="orange">
@@ -162,9 +531,26 @@
           <button data-value="on">Yes</button>
         </div>
       </article>
-      <article class="card"><p class="label">Need focus</p><div class="word" data-key="needFocus"><button data-value="off">blur</button><button data-value="on">focus</button></div></article>
-      <article class="card"><p class="label">Mentally foggy</p><div class="dots" data-key="mentallyFoggy"><button class="dot"></button><button class="dot"></button><button class="dot"></button></div></article>
+
+      <article class="card">
+        <p class="label">Need focus</p>
+        <div class="word" data-key="needFocus">
+          <button data-value="off">blur</button>
+          <button data-value="on">focus</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="label">Mentally foggy</p>
+        <div class="dots" data-key="mentallyFoggy">
+          <button class="dot"></button>
+          <button class="dot"></button>
+          <button class="dot"></button>
+        </div>
+      </article>
+
       <article class="card"><p class="label">Stressed</p><button class="icon orange" data-key="stressed">:|</button></article>
+
       <article class="card">
         <p class="label">Anxious</p>
         <div class="seg" data-key="anxious" data-color="orange">
@@ -172,14 +558,24 @@
           <button data-value="on">anxious</button>
         </div>
       </article>
+
       <article class="card"><p class="label">Moody</p><button class="pill" data-key="moody">mood on</button></article>
       <article class="card"><p class="label">Dehydrated</p><button class="slider" data-key="dehydrated"><span class="line"></span><span class="thumb"></span></button></article>
       <article class="card"><p class="label">Bloated</p><button class="pill" data-key="bloated">selected</button></article>
       <article class="card"><p class="label">Constipated</p><button class="toggle mint" data-key="constipated"><span class="knob"></span></button></article>
-      <article class="card"><p class="label">Sensitive stomach</p><div class="word" data-key="sensitiveStomach"><button data-value="off">stable</button><button data-value="on">sensitive</button></div></article>
+
+      <article class="card">
+        <p class="label">Sensitive stomach</p>
+        <div class="word" data-key="sensitiveStomach">
+          <button data-value="off">stable</button>
+          <button data-value="on">sensitive</button>
+        </div>
+      </article>
+
       <article class="card"><p class="label">Need immunity</p><button class="icon blue" data-key="needImmunity">+</button></article>
       <article class="card"><p class="label">Skipped breakfast</p><button class="pill" data-key="skippedBreakfast">checked</button></article>
       <article class="card"><p class="label">Worked out today</p><button class="toggle blue" data-key="workedOut"><span class="knob"></span></button></article>
+
       <article class="card">
         <p class="label">Staying up late</p>
         <div class="word" data-key="stayingUpLate" data-color="orange">
@@ -187,9 +583,25 @@
           <button data-value="on">awake</button>
         </div>
       </article>
-      <article class="card"><p class="label">Need something light</p><div class="seg" data-key="needSomethingLight"><button data-value="off">rich</button><button data-value="on">light</button></div></article>
+
+      <article class="card">
+        <p class="label">Need something light</p>
+        <div class="seg" data-key="needSomethingLight">
+          <button data-value="off">rich</button>
+          <button data-value="on">light</button>
+        </div>
+      </article>
+
       <article class="card"><p class="label">Want something sweet</p><button class="icon orange" data-key="wantSomethingSweet">♥</button></article>
-      <article class="card"><p class="label">Hot day</p><div class="word" data-key="hotDay"><button data-value="off">cold</button><button data-value="on">hot</button></div></article>
+
+      <article class="card">
+        <p class="label">Hot day</p>
+        <div class="word" data-key="hotDay">
+          <button data-value="off">cold</button>
+          <button data-value="on">hot</button>
+        </div>
+      </article>
+
       <article class="card">
         <p class="label">Cold day</p>
         <div class="word" data-key="coldDay" data-color="orange">
@@ -197,12 +609,23 @@
           <button data-value="on">cold</button>
         </div>
       </article>
+
       <article class="card"><p class="label">Want freshness</p><button class="toggle mint" data-key="wantFreshness"><span class="knob"></span></button></article>
       <article class="card"><p class="label">Need comfort</p><button class="pill" data-key="needComfort">comfort</button></article>
-      <article class="card"><p class="label">Skin feels dull</p><div class="dots" data-key="skinFeelsDull"><button class="dot"></button><button class="dot"></button><button class="dot"></button></div></article>
+
+      <article class="card">
+        <p class="label">Skin feels dull</p>
+        <div class="dots" data-key="skinFeelsDull">
+          <button class="dot"></button>
+          <button class="dot"></button>
+          <button class="dot"></button>
+        </div>
+      </article>
     </section>
 
-    <div class="bottom"><button id="go" class="go">get recommendation</button></div>
+    <div class="bottom">
+      <button id="go" class="go">get recommendation</button>
+    </div>
   </main>
 
   <script>
@@ -215,7 +638,11 @@
       needSomethingLight:false, wantSomethingSweet:false, hotDay:false,
       coldDay:false, wantFreshness:false, needComfort:false, skinFeelsDull:0
     };
-    function save(){ localStorage.setItem("fruitSwitchState", JSON.stringify(state)); }
+
+    function save(){
+      localStorage.setItem("fruitSwitchState", JSON.stringify(state));
+    }
+
     document.querySelectorAll(".toggle, .vertical, .icon, .pill, .slider").forEach((btn)=>{
       btn.addEventListener("click", ()=>{
         const key = btn.dataset.key;
@@ -224,24 +651,37 @@
         save();
       });
     });
+
     document.querySelectorAll(".seg, .word").forEach((group) => {
       const key = group.dataset.key;
       const colorType = group.dataset.color;
       const buttons = group.querySelectorAll("button");
+
       buttons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const isOn = btn.dataset.value === "on";
-          const selectedClass = (colorType === 'orange') ? "is-orange-selected" : (isOn ? "is-selected-on" : "is-selected-off");
-          const alreadyHasClass = btn.classList.contains("is-selected-on") || btn.classList.contains("is-selected-off") || btn.classList.contains("is-orange-selected");
-          buttons.forEach((b) => b.classList.remove("is-selected-on", "is-selected-off", "is-orange-selected"));
-          if (alreadyHasClass) { state[key] = false; } else { state[key] = isOn; btn.classList.add(selectedClass); }
+
+          buttons.forEach((b) => {
+            b.classList.remove("is-selected-on", "is-selected-off", "is-orange-selected");
+          });
+
+          if (colorType === "orange") {
+            btn.classList.add("is-orange-selected");
+          } else {
+            if (isOn) btn.classList.add("is-selected-on");
+            else btn.classList.add("is-selected-off");
+          }
+
+          state[key] = isOn;
           save();
         });
       });
     });
+
     document.querySelectorAll(".dots").forEach((group)=>{
       const key = group.dataset.key;
       const dots = group.querySelectorAll(".dot");
+
       dots.forEach((dot,index)=>{
         dot.addEventListener("click", ()=>{
           const level = index + 1;
@@ -251,7 +691,12 @@
         });
       });
     });
-    document.getElementById("go").addEventListener("click", ()=>{ save(); location.href = "result.html"; });
+
+    document.getElementById("go").addEventListener("click", ()=>{
+      save();
+      location.href = "result.html";
+    });
+
     save();
   </script>
 </body>
