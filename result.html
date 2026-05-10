@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Today’s Recommendation</title>
 
   <style>
@@ -12,7 +12,9 @@
       --body:#222222;
     }
 
-    *{ box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+    }
 
     html, body{
       margin:0;
@@ -23,7 +25,7 @@
 
     body{
       background:#ffffff;
-      transition:background-color 0.4s ease;
+      transition:background-color .45s ease;
     }
 
     a{
@@ -55,12 +57,10 @@
       grid-template-columns:1.2fr 0.8fr;
       padding:26px 60px 40px;
       position:relative;
-      background:transparent;
     }
 
     .text{
       padding-top:26px;
-      max-width:none;
     }
 
     .eyebrow{
@@ -71,20 +71,19 @@
 
     .title{
       margin:0;
-      font-size:clamp(130px, 10.5vw, 200px);
-      line-height:0.85;
+      font-size:clamp(130px, 10vw, 200px);
+      line-height:.85;
       letter-spacing:-0.1em;
       font-weight:700;
     }
 
     .desc{
       margin:48px 0 0;
-      max-width:none;
       color:var(--body);
       font-size:28px;
       line-height:1.5;
       letter-spacing:-0.02em;
-      text-wrap:pretty;
+      max-width:900px;
     }
 
     .selected{
@@ -104,7 +103,6 @@
       font-size:22px;
       line-height:1.4;
       letter-spacing:-0.02em;
-      text-wrap:pretty;
     }
 
     .image-box{
@@ -125,6 +123,7 @@
     }
 
     @media (max-width:1100px){
+
       .wrap{
         grid-template-columns:1fr;
       }
@@ -140,6 +139,7 @@
     }
 
     @media (max-width:768px){
+
       .top{
         padding:20px;
       }
@@ -169,35 +169,55 @@
 </head>
 
 <body>
+
   <header class="top">
     <a href="index.html" class="home-link">
-      <img src="home.png" alt="Home">
+      <img src="Home.png" alt="Home">
     </a>
   </header>
 
   <main class="wrap">
-    <section class="text">
-      <p class="eyebrow">Today's recommendation</p>
 
-      <h1 class="title" id="fruitName">Banana</h1>
+    <section class="text">
+
+      <p class="eyebrow">
+        Today's recommendation
+      </p>
+
+      <h1 class="title" id="fruitName">
+        Banana
+      </h1>
 
       <p class="desc" id="fruitDesc">
-        Bananas provide natural sugars and potassium, which help restore energy and support muscle function.
+        Bananas provide natural sugars and potassium.
       </p>
 
       <div class="selected">
-        <p class="selected-title">Selected conditions</p>
-        <p class="selected-list" id="selectedList">
-          tired, need recovery, anxious, need something light
+
+        <p class="selected-title">
+          Selected conditions
         </p>
+
+        <p class="selected-list" id="selectedList">
+          tired, low energy
+        </p>
+
       </div>
+
     </section>
 
     <div class="image-box">
-      <img id="fruitImage" class="fruit-image" src="Banana.png" alt="fruit">
+      <img
+        id="fruitImage"
+        class="fruit-image"
+        src="Banana.png"
+        alt="fruit"
+      >
     </div>
+
   </main>
 
   <script src="result.js"></script>
+
 </body>
 </html>
