@@ -1,5 +1,4 @@
 const fruitData = {
-
   Banana: {
     desc: "Bananas provide natural sugars and potassium, which help restore energy.",
     image: "Banana.png",
@@ -22,18 +21,6 @@ const fruitData = {
     desc: "Watermelon is hydrating and refreshing.",
     image: "Watermelon.png",
     color: "#58D0AC"
-  },
-
-  Grape: {
-    desc: "Grapes are sweet and comforting.",
-    image: "Grape.png",
-    color: "#7B61FF"
-  },
-
-  Lemon: {
-    desc: "Lemon feels bright and energizing.",
-    image: "Lemon.png",
-    color: "#D6FF25"
   },
 
   Kiwi: {
@@ -64,43 +51,42 @@ const fruitData = {
     desc: "Mangoes are juicy and energizing.",
     image: "Mango.png",
     color: "#FFC933"
-  }
+  },
 
+  Pomegranate: {
+    desc: "Pomegranate is bold, refreshing, and rich in antioxidants.",
+    image: "Pomegranate.png",
+    color: "#C83A4A"
+  }
 };
 
-const state =
-  JSON.parse(localStorage.getItem("fruitSwitchState")) || {};
+const state = JSON.parse(localStorage.getItem("fruitSwitchState")) || {};
 
 const scores = {
-  Banana:0,
-  Apple:0,
-  Orange:0,
-  Watermelon:0,
-  Grape:0,
-  Lemon:0,
-  Kiwi:0,
-  Papaya:0,
-  Strawberry:0,
-  Blueberry:0,
-  Mango:0
+  Banana: 0,
+  Apple: 0,
+  Orange: 0,
+  Watermelon: 0,
+  Kiwi: 0,
+  Papaya: 0,
+  Strawberry: 0,
+  Blueberry: 0,
+  Mango: 0,
+  Pomegranate: 0
 };
 
 const selected = [];
 
 function add(condition, fruit, point = 1){
-
   if(condition){
     scores[fruit] += point;
   }
-
 }
 
 function remember(condition, label){
-
   if(condition){
     selected.push(label);
   }
-
 }
 
 remember(state.tired, "tired");
@@ -113,69 +99,60 @@ remember(state.needImmunity, "need immunity");
 remember(state.needSomethingLight, "need something light");
 remember(state.dehydrated, "dehydrated");
 remember(state.wantSomethingSweet, "want something sweet");
+remember(state.hotDay, "hot day");
+remember(state.moody, "moody");
+remember(state.needFocus, "need focus");
+remember(state.sensitiveStomach, "sensitive stomach");
+remember(state.needComfort, "need comfort");
 
 add(state.tired, "Banana", 2);
 add(state.lowEnergy, "Banana", 2);
 add(state.needRecovery, "Banana", 2);
 
+add(state.needFocus, "Apple", 2);
+add(state.needSomethingLight, "Apple", 1);
+
 add(state.needImmunity, "Orange", 2);
+add(state.skinFeelsDull, "Orange", 1);
 
 add(state.dehydrated, "Watermelon", 3);
 add(state.hotDay, "Watermelon", 2);
 
-add(state.wantSomethingSweet, "Grape", 2);
-add(state.moody, "Grape", 2);
-
-add(state.needFocus, "Apple", 2);
-
-add(state.sleepy, "Lemon", 2);
-add(state.mentallyFoggy, "Lemon", 2);
-
 add(state.wantFreshness, "Kiwi", 2);
-add(state.needImmunity, "Kiwi", 2);
+add(state.needImmunity, "Kiwi", 1);
 
 add(state.needSomethingLight, "Papaya", 2);
 add(state.sensitiveStomach, "Papaya", 2);
 
 add(state.wantFreshness, "Strawberry", 2);
+add(state.wantSomethingSweet, "Strawberry", 2);
 
 add(state.needFocus, "Blueberry", 2);
+add(state.mentallyFoggy, "Blueberry", 1);
 
 add(state.needComfort, "Mango", 2);
 add(state.lowEnergy, "Mango", 1);
+
+add(state.anxious, "Pomegranate", 2);
+add(state.stressed, "Pomegranate", 2);
 
 let resultName = "Banana";
 let highestScore = -1;
 
 for(const fruit in scores){
-
   if(scores[fruit] > highestScore){
-
     highestScore = scores[fruit];
     resultName = fruit;
-
   }
-
 }
 
 const result = fruitData[resultName];
 
-document.getElementById("fruitName").textContent =
-  resultName;
-
-document.getElementById("fruitDesc").textContent =
-  result.desc;
-
-document.getElementById("fruitImage").src =
-  result.image;
-
-document.getElementById("fruitImage").alt =
-  resultName;
-
+document.getElementById("fruitName").textContent = resultName;
+document.getElementById("fruitDesc").textContent = result.desc;
+document.getElementById("fruitImage").src = result.image;
+document.getElementById("fruitImage").alt = resultName;
 document.getElementById("selectedList").textContent =
-  selected.length > 0
-  ? selected.join(", ")
-  : "No condition selected";
+  selected.length > 0 ? selected.join(", ") : "No condition selected";
 
-document.body.style.backgroundColor =
-  result.color;
+document.body.style.backgroundColor = result.color;
