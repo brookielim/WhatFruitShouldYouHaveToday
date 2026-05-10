@@ -12,9 +12,7 @@
       --body:#222222;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{ box-sizing:border-box; }
 
     html, body{
       margin:0;
@@ -123,7 +121,6 @@
     }
 
     @media (max-width:1100px){
-
       .wrap{
         grid-template-columns:1fr;
       }
@@ -139,7 +136,6 @@
     }
 
     @media (max-width:768px){
-
       .top{
         padding:20px;
       }
@@ -169,7 +165,6 @@
 </head>
 
 <body>
-
   <header class="top">
     <a href="index.html" class="home-link">
       <img src="Home.png" alt="Home">
@@ -177,47 +172,26 @@
   </header>
 
   <main class="wrap">
-
     <section class="text">
+      <p class="eyebrow">Today's recommendation</p>
 
-      <p class="eyebrow">
-        Today's recommendation
-      </p>
-
-      <h1 class="title" id="fruitName">
-        Banana
-      </h1>
+      <h1 class="title" id="fruitName">Banana</h1>
 
       <p class="desc" id="fruitDesc">
         Bananas provide natural sugars and potassium.
       </p>
 
       <div class="selected">
-
-        <p class="selected-title">
-          Selected conditions
-        </p>
-
-        <p class="selected-list" id="selectedList">
-          tired, low energy
-        </p>
-
+        <p class="selected-title">Selected conditions</p>
+        <p class="selected-list" id="selectedList">tired, low energy</p>
       </div>
-
     </section>
 
     <div class="image-box">
-      <img
-        id="fruitImage"
-        class="fruit-image"
-        src="Banana.png"
-        alt="fruit"
-      >
+      <img id="fruitImage" class="fruit-image" src="Banana.png" alt="fruit">
     </div>
-
   </main>
 
   <script src="result.js"></script>
-
 </body>
 </html>
